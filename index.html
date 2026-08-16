@@ -53,6 +53,30 @@
         </div>
     </div>
 
+    <!-- NUEVO MODAL: Editar Producto -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal-content">
+            <h3>Editar Producto</h3>
+            <input type="text" id="editModalInput" class="custom-input mt-15" autocomplete="off">
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="cancelEdit()">Cancelar</button>
+                <button class="btn-confirm" onclick="saveEdit()">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NUEVO MODAL: Confirmar Eliminación -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-content text-center">
+            <h3 id="confirmTitle">¿Eliminar?</h3>
+            <p id="confirmMessage" class="mt-15"></p>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="cancelConfirm()">Cancelar</button>
+                <button class="btn-confirm btn-danger" onclick="proceedConfirm()">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL: Historial de Tickets -->
     <div class="modal-overlay" id="historyModal">
         <div class="modal-content modal-large">
@@ -65,7 +89,7 @@
         </div>
     </div>
 
-    <!-- MODAL: Mensajes del Sistema (Reemplaza los Alerts) -->
+    <!-- MODAL: Mensajes del Sistema -->
     <div class="modal-overlay" id="alertModal">
         <div class="modal-content text-center">
             <h3 id="alertTitle">Notificación</h3>
