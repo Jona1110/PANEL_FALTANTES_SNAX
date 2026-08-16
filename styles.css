@@ -1,0 +1,80 @@
+:root {
+    --primary: #F29F05; --primary-dark: #D98E04;
+    --dark: #262626; --light: #F2F2F2;
+    --success: #27AE60; --danger: #E74C3C;
+    --gray: #95A5A6; --pending: #E67E22;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: var(--light); color: var(--dark); padding: 15px; padding-bottom: 40px; }
+.container { max-width: 600px; margin: 0 auto; }
+
+.header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+header h1 { font-size: 1.5rem; color: var(--dark); }
+.btn-icon { background: rgba(38,38,38,0.1); color: var(--dark); border: none; padding: 8px 12px; border-radius: 20px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+.btn-icon:hover { background: rgba(38,38,38,0.2); }
+.subtitle { color: var(--gray); font-size: 0.9rem; margin-bottom: 25px; }
+
+.input-card { background: white; padding: 15px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; }
+.row { display: flex; gap: 10px; align-items: center; width: 100%; }
+input[type="text"], input[type="number"] { flex: 1; padding: 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; outline: none; transition: border-color 0.3s ease; }
+input:focus { border-color: var(--primary); }
+
+button { padding: 14px 20px; background: var(--dark); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.3s ease, transform 0.1s ease; }
+button:active { transform: scale(0.98); }
+button:disabled { background: var(--gray); cursor: not-allowed; }
+
+.list-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.refresh-btn { padding: 6px 12px; font-size: 0.85rem; background: var(--primary); }
+
+ul { list-style: none; }
+li { display: flex; justify-content: space-between; align-items: center; background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: all 0.3s ease; border-left: 4px solid var(--pending); }
+li.is-bought { border-left-color: var(--success); opacity: 0.7; }
+li.is-bought .item-details h4 { text-decoration: line-through; color: var(--gray); }
+.item-details h4 { font-size: 1.05rem; margin-bottom: 4px; }
+.item-details p { font-size: 0.85rem; font-weight: 600; }
+.cost-pending { color: var(--pending); }
+.cost-bought { color: var(--success); }
+
+.checkbox-wrapper input[type="checkbox"] { width: 22px; height: 22px; cursor: pointer; accent-color: var(--success); }
+
+.summary-card { background: var(--dark); color: white; padding: 25px; border-radius: 12px; text-align: center; margin-top: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+.summary-card h2 { font-size: 1.1rem; font-weight: 400; color: #ccc; }
+.total-amount { font-size: 2.5rem; font-weight: 700; color: var(--primary); margin: 10px 0; }
+.btn-close-day { background: var(--success); width: 100%; margin-top: 10px; }
+.btn-close-day:hover { background: #219653; }
+
+/* MODALES Y ANIMACIONES (Adiós Prompts nativos) */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s ease; backdrop-filter: blur(3px); }
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal-content { background: white; width: 90%; max-width: 400px; padding: 25px; border-radius: 16px; transform: translateY(30px) scale(0.95); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
+.modal-large { max-width: 500px; max-height: 80vh; display: flex; flex-direction: column; }
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+.close-icon { background: none; color: var(--gray); font-size: 1.2rem; padding: 0; width: 30px; height: 30px; }
+.modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+.btn-cancel { background: #eee; color: var(--dark); flex: 1; }
+.btn-confirm { background: var(--primary); flex: 1; }
+.mt-15 { margin-top: 15px; }
+.w-100 { width: 100%; }
+.text-center { text-align: center; }
+
+/* DISEÑO DE TICKETS EN HISTORIAL */
+.history-container { overflow-y: auto; padding-right: 5px; }
+.ticket-card { background: #fffcf5; border: 1px dashed #ccc; padding: 15px; border-radius: 8px; margin-bottom: 15px; font-family: 'Courier New', Courier, monospace; position: relative; }
+.ticket-card::before, .ticket-card::after { content: ''; position: absolute; top: 50%; width: 15px; height: 15px; background: white; border-radius: 50%; border: 1px solid #ccc; transform: translateY(-50%); }
+.ticket-card::before { left: -8px; border-left-color: transparent; }
+.ticket-card::after { right: -8px; border-right-color: transparent; }
+.ticket-date { font-size: 0.8rem; color: #666; border-bottom: 1px dashed #ccc; padding-bottom: 8px; margin-bottom: 8px; text-align: center; }
+.ticket-item { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 4px; }
+.ticket-total { display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1rem; border-top: 1px dashed #ccc; padding-top: 8px; margin-top: 8px; }
+
+/* PREFIJO INPUT COSTO */
+.input-prefix { display: flex; align-items: center; background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+.input-prefix span { padding: 0 15px; color: var(--gray); font-weight: bold; background: #f9f9f9; height: 100%; display: flex; align-items: center; border-right: 1px solid #ddd; }
+.input-prefix input { border: none; border-radius: 0; width: 100%; }
+
+/* LOADER GLOBAL */
+.global-loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.8); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 2000; }
+.spinner { border: 4px solid #f3f3f3; border-top: 4px solid var(--primary); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin-bottom: 10px; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }

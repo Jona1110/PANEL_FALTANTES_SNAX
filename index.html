@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snax - Operación y Tickets</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <h1>📦 Snax Inventario</h1>
+                <button class="btn-icon" onclick="openHistory()">🧾 Historial</button>
+            </div>
+            <p class="subtitle">Anota faltantes y registra el costo al comprar</p>
+        </header>
+        
+        <div class="input-card">
+            <div class="row">
+                <input type="text" id="itemInput" placeholder="Ej. Vasos térmicos, Servilletas..." autocomplete="off">
+                <button id="addBtn" onclick="addItem()">Agregar</button>
+            </div>
+        </div>
+
+        <div class="list-container">
+            <div class="list-header">
+                <h3>Por comprar hoy</h3>
+                <button onclick="fetchItems()" class="refresh-btn">🔄 Actualizar</button>
+            </div>
+            <ul id="shoppingList"></ul>
+        </div>
+
+        <div class="summary-card">
+            <h2>Gasto Total del Día</h2>
+            <div class="total-amount">$<span id="totalAmount">0.00</span></div>
+            <button class="btn-close-day" onclick="confirmCloseDay()">Cerrar Día y Generar Ticket</button>
+        </div>
+    </div>
+
+    <!-- MODAL: Pedir Costo -->
+    <div class="modal-overlay" id="costModal">
+        <div class="modal-content">
+            <h3 id="costModalTitle">Ingresa el costo</h3>
+            <div class="input-prefix mt-15">
+                <span>$</span>
+                <input type="number" id="costModalInput" placeholder="0.00" min="0" step="0.5">
+            </div>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="cancelCost()">Cancelar</button>
+                <button class="btn-confirm" onclick="saveCost()">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Historial de Tickets -->
+    <div class="modal-overlay" id="historyModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3>🧾 Historial de Tickets</h3>
+                <button class="close-icon" onclick="closeModal('historyModal')">✖</button>
+            </div>
+            <div id="historyLoader" class="loader">Cargando tickets...</div>
+            <div id="historyContainer" class="history-container"></div>
+        </div>
+    </div>
+
+    <!-- MODAL: Mensajes del Sistema (Reemplaza los Alerts) -->
+    <div class="modal-overlay" id="alertModal">
+        <div class="modal-content text-center">
+            <h3 id="alertTitle">Notificación</h3>
+            <p id="alertMessage" class="mt-15"></p>
+            <button class="btn-confirm w-100 mt-15" onclick="closeModal('alertModal')">Entendido</button>
+        </div>
+    </div>
+
+    <!-- LOADER FLOTANTE GLOBAL -->
+    <div id="globalLoader" class="global-loader" style="display: none;">
+        <div class="spinner"></div>
+        <p>Sincronizando...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
