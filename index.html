@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snax - Panel Operativo de Compras</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📦 Panel de Surtido Snax</h1>
+            <p class="subtitle">Lista colaborativa en tiempo real</p>
+        </header>
+        
+        <div class="input-card">
+            <input type="text" id="itemInput" placeholder="Ej. Vasos térmicos, Servilletas..." autocomplete="off">
+            <div class="row">
+                <div class="input-prefix">
+                    <span>$</span>
+                    <input type="number" id="costInput" placeholder="Costo estimado" min="0" step="0.5">
+                </div>
+                <button id="addBtn" onclick="addItem()">Agregar a lista</button>
+            </div>
+        </div>
+
+        <div class="list-container">
+            <div class="list-header">
+                <h3>Por comprar</h3>
+                <button onclick="fetchItems()" class="refresh-btn" title="Actualizar lista">🔄 Actualizar</button>
+            </div>
+            
+            <div id="loader" class="loader" style="display: none;">Sincronizando con la base de datos...</div>
+            <ul id="shoppingList"></ul>
+        </div>
+
+        <div class="summary-card">
+            <h2>Gasto Total Confirmado</h2>
+            <div class="total-amount">$<span id="totalAmount">0.00</span></div>
+            <p class="note">*Solo suma los artículos marcados como listos.</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
